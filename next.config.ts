@@ -1,29 +1,35 @@
-import type { NextConfig } from 'next';
-import createMDX from '@next/mdx';
-import { type CodeHikeConfig } from 'codehike/mdx';
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
-const nextConfig: NextConfig = {
-  cacheComponents: true,
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-  experimental: {
-    // Disabled due to font error that's causing them not to be loaded
-    // correctly in the browser.
-    // inlineCss: true,
-    viewTransition: true,
-    prerenderEarlyExit: false,
-    routerBFCache: true,
-  },
-};
+function App() {
+  const [count, setCount] = useState(0);
 
-const codeHikeConfig = {
-  components: { code: 'MyCode', inlineCode: 'MyInlineCode' },
-} satisfies CodeHikeConfig;
+  return (
+    <div className="App">
+      <header className="App-header">
+        <div>
+          <a href="https://vite.dev" target="_blank">
+            <img src={viteLogo} className="logo" alt="Vite logo" />
+          </a>
+          <a href="https://react.dev" target="_blank">
+            <img src={reactLogo} className="logo react" alt="React logo" />
+          </a>
+        </div>
+        <h1>GrowthBook Android Frontend</h1>
+        <div className="card">
+          <button onClick={() => setCount((count) => count + 1)}>
+            count is {count}
+          </button>
+          <p>Edit <code>src/App.tsx</code> and save to test HMR</p>
+        </div>
+        <p className="read-the-docs">
+          Click on the logos to learn more
+        </p>
+      </header>
+    </div>
+  );
+}
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [['remark-codehike', codeHikeConfig]],
-    recmaPlugins: [['recma-codehike', codeHikeConfig]],
-  },
-});
-
-export default withMDX(nextConfig);
+export default App;
