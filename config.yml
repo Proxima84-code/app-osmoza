@@ -1,0 +1,7 @@
+tunnel: <TUNNEL-ID>   A0A1KQRP3GW
+credentials-file: /home/username/.cloudflared/<TUNNEL-ID>.json
+
+ingress:
+  - hostname: osmoza-dvo.slack.com
+    service: http://localhost:3000
+  - service: http_status:404
